@@ -5,28 +5,27 @@ header{
     padding: 1rem;
 }
 body{
-    font-family: Arial, sans-serif;
+    font-family: serif;
     margin: 0;
     padding: 0;
+    background-color: black;
 }
 .grid-container{
     display: grid;
     grid-template-columns: auto auto auto auto auto;
-    gap: 0px 0px;       
-    background-color: #f1f1f1;
+    gap: 5px;      
+    background-color: black;
     width: 30%;
     margin-left: auto;
     margin-right: auto;
     height: 2em;
 }
-.grid-item{
-    background-color: #f1f1f1;
-    border: 1px solid #ccc;
-    font-size: 30px;
-    text-align: center;
-}
+
 .container{
-    perspective: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    caret-color: transparent;
+    background-color: black;
 }
 .letra{
     transform-style: preserve-3d;
@@ -35,6 +34,37 @@ body{
     display: flex;  
     justify-content: center;
     align-items: center;
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: black;
+    color: white;
+    border: solid 1px gray;
+}
+.letra.animar{
+    animation: zoom 0.5ms ease-in-out; 
+}
+
+input{
+    box-sizing: border-box;
+}
+input:focus{
+    outline: none;
+}
+input.resaltar{
+    border-color: lightgray;
+    transition: all 0.5ms ease, border-width 0.5ms ease;
+}
+
+@keyframes zoom{
+    0%{
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100%{
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 @keyframes girar-yellow{
