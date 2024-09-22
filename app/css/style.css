@@ -29,7 +29,7 @@ body{
 }
 .letra{
     transform-style: preserve-3d;
-    width: 100%;
+    width: 95%;
     height: 2em;
     display: flex;  
     justify-content: center;
@@ -51,9 +51,17 @@ input{
 input:focus{
     outline: none;
 }
-input.resaltar{
-    border-color: lightgray;
-    transition: all 0.2s ease, border-width 0.2s ease;
+
+
+@keyframes resaltar{
+    0%{
+        border-width: 0.5px;
+        border-color: lightgray;
+    }
+    100%{
+        border-width: 1px;
+        border-color: lightgray;
+    }
 }
 
 @keyframes zoom{

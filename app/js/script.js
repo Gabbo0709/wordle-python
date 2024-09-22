@@ -24,23 +24,13 @@ function initializeEvents() {
             }
         });
     });
-
-    inputs.forEach((input) => {
-        input.addEventListener('input', () => {
-            if(input.value === ''){
-                removeHighlight(input);
-            }
-        });
-    });
 }
 
 function highlightInput(input) {
-    input.classList.add('resaltar');
-    input.style.animation = 'zoom 0.2s ease-in-out';
+    input.style.animation = 'zoom 0.2s ease-in-out, resaltar 0.2s ease-in-out forwards';
 }
 
 function removeHighlight(input) {
-    input.classList.remove('resaltar');
     input.style.animation = '';
 }
 
