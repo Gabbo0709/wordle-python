@@ -13,10 +13,7 @@ function initializeEvents() {
                 highlightInput(inputElement);
                 moveToNextInput(inputElement, inputs);
             }
-            if(inputElement.value === ''){
-                removeHighlight(inputElement);
-            }
-        }
+        }   
     });
 
     inputs.forEach((input, index) => {
@@ -27,11 +24,19 @@ function initializeEvents() {
             }
         });
     });
+
+    inputs.forEach((input) => {
+        input.addEventListener('input', () => {
+            if(input.value === ''){
+                removeHighlight(input);
+            }
+        });
+    });
 }
 
 function highlightInput(input) {
     input.classList.add('resaltar');
-    input.style.animation = 'zoom 0.3s ease-in-out';
+    input.style.animation = 'zoom 0.2s ease-in-out';
 }
 
 function removeHighlight(input) {

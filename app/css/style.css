@@ -42,7 +42,7 @@ body{
     border: solid 1px gray;
 }
 .letra.animar{
-    animation: zoom 0.5ms ease-in-out; 
+    animation: zoom 0.2s ease-in-out; 
 }
 
 input{
@@ -53,7 +53,7 @@ input:focus{
 }
 input.resaltar{
     border-color: lightgray;
-    transition: all 0.5ms ease, border-width 0.5ms ease;
+    transition: all 0.2s ease, border-width 0.2s ease;
 }
 
 @keyframes zoom{
