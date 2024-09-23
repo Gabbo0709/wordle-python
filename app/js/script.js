@@ -11,16 +11,26 @@ function initializeEvents() {
         if (inputElement.classList.contains('letra')) {
             if (inputElement.value.length === 1) {
                 highlightInput(inputElement);
-                moveToNextInput(inputElement, inputs);
+                if (inputElement.id.slice(-1) != 5) {
+                    moveToNextInput(inputElement, inputs);
+                }
             }
-        }   
+        }
+    });
+
+    container.addEventListener('keydown', (event) => {
+        if (currentInput.id.slice(-1) == 5 && event.key === 'Enter' && currentInput.value.length === 1 && currentInput.id.charAt(6) != 5) {
+            moveToNextInput(currentInput, inputs);
+        }
     });
 
     inputs.forEach((input, index) => {
         input.addEventListener('keydown', (event) => {
             if (event.key === 'Backspace' && input.value === '') {
                 removeHighlight(input);
-                moveToPreviousInput(input, inputs, index);
+                if (input.id.slice(-1) != 1) {
+                    moveToPreviousInput(input, inputs, index);
+                }
             }
         });
     });
@@ -37,8 +47,8 @@ function removeHighlight(input) {
 function moveToNextInput(input, inputs) {
     const index = Array.from(inputs).indexOf(input);
     const nextInput = inputs[index + 1];
-    currentInput.disabled = true;
-    nextInput.disabled = false;
+    currentInput.readOnly = true;
+    nextInput.readOnly = false;
     nextInput.focus();
     currentInput = nextInput;
 }
@@ -47,8 +57,8 @@ function moveToPreviousInput(input, inputs, index) {
     if (index > 0) {
         const previousInput = inputs[index - 1];
         previousInput.value = '';
-        previousInput.disabled = false;
-        currentInput.disabled = true;
+        previousInput.readOnly = false;
+        currentInput.readOnly = true;
         previousInput.focus();
         currentInput = previousInput;
     }

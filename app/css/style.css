@@ -8,36 +8,40 @@ body{
     font-family: serif;
     margin: 0;
     padding: 0;
-    background-color: black;
+    background-color: rgb(39, 39, 39);
+    text-align: center;
 }
 .grid-container{
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     gap: 5px;      
-    background-color: black;
+    background-color: rgb(39, 39, 39);
     width: 30%;
     margin-left: auto;
     margin-right: auto;
     height: 2em;
+    justify-content: center;
 }
 
 .container{
     width: 100%;
     box-sizing: border-box;
     caret-color: transparent;
-    background-color: black;
+    background-color: rgb(39, 39, 39);
 }
 .letra{
     transform-style: preserve-3d;
+    min-width: 3em;
     width: 95%;
-    height: 2em;
+    min-height: 2em;
+    height: 3em;
     display: flex;  
     justify-content: center;
     align-items: center;
     font-size: 2rem;
     text-transform: uppercase;
     text-align: center;
-    background-color: black;
+    background-color: rgb(66, 66, 66);
     color: white;
     border: solid 1px gray;
 }
