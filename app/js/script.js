@@ -1,7 +1,7 @@
-import { validarPalabra } from "./api";
+import { validarPalabra } from "./api.js";
 
 let currentInput = null;
-let currentRow = 1;
+let currentRow = 0;
 let listaInputs;
 let palabra = "";
 let values = [-1, -1, -1, -1, -1];
@@ -27,21 +27,18 @@ function initializeEvents() {
     container.addEventListener('keydown', (event) => {
         if (currentInput.id.slice(-1) == 5 && event.key === 'Enter' && currentInput.value.length === 1 && currentInput.id.charAt(6) != 5) {
             moveToNextInput(currentInput, inputs);
-            getWord(listaInputs.slice(currentRow, currentRow + 5));
-            currentRow++;
-            validarPalabra(palabra, currentRow).then((result) => {
+            getWord(listaInputs.slice((5 * currentRow), (5 * currentRow) + 5));
+            validarPalabra(palabra.toUpperCase(), currentRow).then((result) => {
                 values = result.evaluacion;
-                currentRow++;
-                girarElementos(listaInputs.slice(currentRow, currentRow + 5), values);
+                girarElementos(listaInputs.slice((5 * currentRow), (5 * currentRow) + 5), values);
                 if(result.intento == 6){
                     alert("Perdiste");
                 } else if(values.every(value => value === 1)){
                     winGame(listaInputs);
                     alert("Ganaste");
                 }
+                currentRow = result.intento;
             });
-        } else {
-
         }
     });
 
@@ -86,9 +83,11 @@ function moveToPreviousInput(inputs, index) {
 }
 
 function getWord(inputs){
+    palabra = "";
     inputs.forEach(input => {
         palabra += input.value;
     });
+    palabra = palabra.toUpperCase();
     console.log(palabra);
 }
 
@@ -133,10 +132,6 @@ function girarElementos(inputs, values){
         }
     }, index * 1000);
     });
-}
-
-function element_onChange() {
-
 }
 
 document.addEventListener('DOMContentLoaded', initializeEvents);

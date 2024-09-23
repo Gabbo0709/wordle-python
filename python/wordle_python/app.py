@@ -50,7 +50,7 @@ def wordle():
     if not isinstance(intento, int):
         return jsonify({"error": "El intento debe ser un número entero"}), 403
     if palabras.puede_jugar(intento):
-        resultado = palabras.intento(palabra, palabra_dia, intento)
+        resultado = palabras.intento(palabra.upper(), palabra_dia.upper(), intento)
         print(jsonify(resultado))
         return jsonify(resultado)
     else:

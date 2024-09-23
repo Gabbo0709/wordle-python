@@ -21,11 +21,12 @@ const validarPalabra = async (palabra, intento) => {
         body: JSON.stringify(data),
     });
     if (response.ok) {
-        result = await response.json();
+        let result = await response.json();
         let validacionResult = {
             intento: result[0],
             evaluacion: result[1],
         };
+        console.log(`Resultado evauluación: ${validacionResult.evaluacion}. Intento: ${validacionResult.intento}`);
         return validacionResult;
     }
     if (response.status === 400) {
