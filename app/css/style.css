@@ -88,7 +88,7 @@ input:focus{
     }
     100%{
         transform: rotateX(0deg);
-        background-color: yellow;
+        background-color: lightyellow;
     }
 }
 
@@ -101,7 +101,7 @@ input:focus{
     }
     100%{
         transform: rotateX(0deg);
-        background-color: green;
+        background-color: lightgreen;
     }
 }
 
@@ -114,6 +114,25 @@ input:focus{
     }
     100%{
         transform: rotateX(0deg);
-        background-color: lightgray;
+        background-color: gray;
+    }
+}
+
+@keyframes win-game{
+    0% {
+        transform: translateY(0);
+      }
+      25% {
+        transform: translateY(-3rem);
+      }
+      50% {
+        transform: translateY(0rem);
+      }
+      75% {
+        transform: translateY(3rem);
+      }
+    100% {
+        transform: translateY(0);
+        
     }
 }
