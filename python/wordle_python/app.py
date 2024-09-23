@@ -2,9 +2,11 @@ import utility.obtener_palabra as op  # Importamos el módulo obtener_palabra
 import api.palabras as palabras  # Importamos el módulo palabras
 from flask import Flask, request, jsonify  # Importamos Flask, request y jsonify
 from flasgger import Swagger  # Importamos Swagger
+from flask_cors import CORS  # Importamos CORS
 
 app = Flask(__name__)  # Creamos una instancia de Flask
 Swagger(app)  # Creamos una instancia de Swagger
+CORS(app)
 
 palabra_dia = op.obtener_palabra()  # Obtenemos una palabra de 5 letras
 
