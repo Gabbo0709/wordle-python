@@ -42,4 +42,4 @@ const validarPalabra = async (palabra, intento) => {
     }
 }
 
-export { validarPalabra }
+export { validarPalabra };

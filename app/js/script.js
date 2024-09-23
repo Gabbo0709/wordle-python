@@ -1,6 +1,10 @@
+import { validarPalabra } from "./api";
+
 let currentInput = null;
 let currentRow = 1;
 let listaInputs;
+let palabra = "";
+let values = [-1, -1, -1, -1, -1];
 
 function initializeEvents() {
     const container = document.querySelector('.grid-container');
@@ -8,9 +12,6 @@ function initializeEvents() {
     currentInput = inputs[0];
     listaInputs = Array.from(inputs);
     currentInput.focus();
-    
-    spin(listaInputs.slice(0, 5));
-    winGame(listaInputs.slice(0, 5));
     container.addEventListener('input', (event) => {
         const inputElement = event.target;
         if (inputElement.classList.contains('letra')) {
@@ -26,7 +27,21 @@ function initializeEvents() {
     container.addEventListener('keydown', (event) => {
         if (currentInput.id.slice(-1) == 5 && event.key === 'Enter' && currentInput.value.length === 1 && currentInput.id.charAt(6) != 5) {
             moveToNextInput(currentInput, inputs);
+            getWord(listaInputs.slice(currentRow, currentRow + 5));
             currentRow++;
+            validarPalabra(palabra, currentRow).then((result) => {
+                values = result.evaluacion;
+                currentRow++;
+                girarElementos(listaInputs.slice(currentRow, currentRow + 5), values);
+                if(result.intento == 6){
+                    alert("Perdiste");
+                } else if(values.every(value => value === 1)){
+                    winGame(listaInputs);
+                    alert("Ganaste");
+                }
+            });
+        } else {
+
         }
     });
 
@@ -70,6 +85,12 @@ function moveToPreviousInput(inputs, index) {
     }
 }
 
+function getWord(inputs){
+    inputs.forEach(input => {
+        palabra += input.value;
+    });
+    console.log(palabra);
+}
 
 function spinYellow(element) {
     document.getElementById(element).style.animation = 'girar-yellow 0.5s ease-in-out forwards';
@@ -92,14 +113,6 @@ function winGame(inputs){
         setTimeout(() => {
             jumpInput(input.id);
             console.log(input.id + " salta");
-        }, index * 250);
-    });
-}
-
-function spin(inputs){
-    inputs.forEach((input, index) => {
-        setTimeout(() => {
-            spinGreen(input.id);
         }, index * 250);
     });
 }
